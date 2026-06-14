@@ -19,7 +19,7 @@ export default function Home() {
     fetch("/api/requests")
       .then((r) => r.json())
       .then((json) => setRequests(json))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const handleSelectRequest = (request: Request) => {
@@ -70,6 +70,7 @@ export default function Home() {
           requests={requests}
           filteredRequests={filteredRequests}
           onSelectRequest={handleSelectRequest}
+          onStatusChange={handleStatusChange}
         />
         <TWorldSection />
         <DetailSidebar

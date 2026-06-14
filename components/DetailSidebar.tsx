@@ -115,7 +115,7 @@ export default function DetailSidebar({ request, isOpen, onClose, onStatusChange
                     </Typography>
 
 
-                       {/* Description */}
+                    {/* Description */}
                     <Box sx={{ mb: 3 }}>
                         <Typography variant="body2" sx={{ color: '#6B7280', fontWeight: 600, mb: 1 }}>
                             DESCRIPTION
@@ -192,7 +192,7 @@ export default function DetailSidebar({ request, isOpen, onClose, onStatusChange
 
                     <Divider sx={{ my: 2 }} />
 
-                 
+
 
                     <Divider sx={{ my: 2 }} />
 

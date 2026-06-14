@@ -31,7 +31,16 @@ interface RequestTableProps {
     requests: Request[];
     filteredRequests: Request[];
     onSelectRequest: (request: Request) => void;
+    onStatusChange?: (requestId: string, newStatus: string) => void;
 }
+
+const statusOrder = ['To Do', 'In Progress', 'Pending Approval', 'At Risk', 'Done'];
+
+const getNextStatus = (currentStatus: string): string => {
+    const currentIndex = statusOrder.indexOf(currentStatus);
+    const nextIndex = (currentIndex + 1) % statusOrder.length;
+    return statusOrder[nextIndex];
+};
 
 const getPriorityColor = (priority: string) => {
     switch (priority) {
@@ -76,8 +85,14 @@ const getRiskColor = (risk: string) => {
     }
 };
 
-export default function RequestTable({ requests, filteredRequests, onSelectRequest }: RequestTableProps) {
+export default function RequestTable({ requests, filteredRequests, onSelectRequest, onStatusChange }: RequestTableProps) {
     const displayRequests = filteredRequests.length > 0 ? filteredRequests : requests;
+
+    const handleStatusClick = (e: React.MouseEvent, request: Request) => {
+        e.stopPropagation();
+        const nextStatus = getNextStatus(request.status);
+        onStatusChange?.(request.id, nextStatus);
+    };
 
     return (
         <TableContainer component={Paper} sx={{ mt: 4, borderRadius: 2, boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>
@@ -101,9 +116,11 @@ export default function RequestTable({ requests, filteredRequests, onSelectReque
                             key={request.id}
                             sx={{
                                 borderBottom: '1px solid #e5e7eb',
+                                backgroundColor: request.status === 'At Risk' ? '#FEF2F2' : request.status === 'Done' ? '#F0FDF4' : '#ffffff',
                                 '&:hover': {
-                                    backgroundColor: '#f3f4f6',
+                                    backgroundColor: request.status === 'At Risk' ? '#FCDFE3' : request.status === 'Done' ? '#E7F5E2' : '#f3f4f6',
                                 },
+                                transition: 'all 0.2s ease',
                             }}
                         >
                             <TableCell sx={{ fontWeight: 600, color: '#111827' }}>{request.id}</TableCell>
@@ -126,23 +143,22 @@ export default function RequestTable({ requests, filteredRequests, onSelectReque
                                 />
                             </TableCell>
                             <TableCell>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                    <Chip
-                                        label={request.status}
-                                        size="small"
-                                        onClick={() => onSelectRequest(request)}
-                                        sx={{
-                                            backgroundColor: getStatusColor(request.status),
-                                            color: 'white',
-                                            fontWeight: 600,
-                                            fontSize: '0.75rem',
-                                            cursor: 'pointer',
-                                            '&:hover': {
-                                                opacity: 0.8,
-                                            },
-                                        }}
-                                    />
-                                </div>
+                                <Chip
+                                    label={request.status}
+                                    size="small"
+                                    onClick={(e) => handleStatusClick(e, request)}
+                                    sx={{
+                                        backgroundColor: getStatusColor(request.status),
+                                        color: 'white',
+                                        fontWeight: 600,
+                                        fontSize: '0.75rem',
+                                        cursor: 'pointer',
+                                        '&:hover': {
+                                            opacity: 0.8,
+                                            transform: 'scale(1.05)',
+                                        },
+                                    }}
+                                />
                             </TableCell>
                             <TableCell sx={{ color: '#374151', fontSize: '0.875rem' }}>{request.owner}</TableCell>
                             <TableCell sx={{ color: '#374151', fontSize: '0.875rem' }}>{request.dueDate}</TableCell>
