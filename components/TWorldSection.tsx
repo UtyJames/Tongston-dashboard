@@ -18,12 +18,12 @@ const TWorldSection = () => {
   return (
     <div className="p-8 w-full font-sans relative pb-24 bg-white min-h-screen">
       {/* Header */}
-      <div className="flex justify-between items-start mb-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
         <div>
           <h1 className="text-4xl font-bold text-gray-900 tracking-tight mb-1">Delivery Snapshot</h1>
           <p className="text-gray-500 text-sm">Live overview of active engineering workstream.</p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors bg-white shadow-sm">
             <FilterListIcon className="w-4 h-4" /> Filter View
           </button>
@@ -57,8 +57,8 @@ const TWorldSection = () => {
                 <span className="bg-blue-50 text-blue-600 text-xs font-bold px-2 py-0.5 rounded">In Progress</span>
               </div>
               <h3 className="font-bold text-gray-900 mb-3 text-[15px]">Files & Docs approved-file filter</h3>
-              <div className="flex items-center gap-4 text-[13px] text-gray-500 font-medium">
-                <div className="flex items-center gap-1">
+              <div className="flex flex-wrap items-center gap-4 text-[13px] text-gray-500 font-medium">
+                <div className="flex items-center gap-1 whitespace-nowrap">
                   <LinkIcon sx={{ fontSize: 16 }} /> Linked to PR #118
                 </div>
                 <div className="flex items-center gap-1">
@@ -140,15 +140,15 @@ const TWorldSection = () => {
                 </div>
                 <h3 className="font-bold text-gray-900 mb-3 text-[15px]">Backend file filtering endpoint</h3>
                 
-                <div className="bg-[#f8f9fa] border border-dashed border-gray-300 rounded-sm p-2.5 flex justify-between items-center mb-4">
-                  <div className="flex items-center gap-5 text-xs font-bold">
+                <div className="bg-[#f8f9fa] border border-dashed border-gray-300 rounded-sm p-2.5 flex flex-wrap justify-between items-center gap-2 mb-4">
+                  <div className="flex flex-wrap items-center gap-5 text-xs font-bold">
                     <span className="flex items-center gap-1.5 text-red-700"><CancelIcon sx={{ fontSize: 14 }} className="text-red-600"/> 1 FAILED</span>
                     <span className="flex items-center gap-1.5 text-emerald-700"><CheckCircleIcon sx={{ fontSize: 14 }} className="text-emerald-500"/> 2 PASSED</span>
                   </div>
                   <span className="text-xs font-bold text-gray-700 cursor-pointer hover:underline">Details</span>
                 </div>
 
-                <div className="flex items-center gap-2.5">
+                <div className="flex flex-wrap items-center gap-2.5">
                   <AvatarGroup max={3} sx={{ '& .MuiAvatar-root': { width: 24, height: 24, fontSize: '0.75rem', border: '1px solid white' } }}>
                     <Avatar alt="User 1" sx={{ width: 24, height: 24, bgcolor: '#1e293b' }} />
                     <Avatar alt="User 2" sx={{ width: 24, height: 24, bgcolor: '#334155' }} />

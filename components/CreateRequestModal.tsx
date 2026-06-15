@@ -89,7 +89,7 @@ export default function CreateRequestModal({ open, onClose, onCreate }: CreateRe
               size="small"
             />
             
-            <Box sx={{ display: 'flex', gap: 2 }}>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
               <FormControl size="small" fullWidth>
                 <InputLabel>Category</InputLabel>
                 <Select value={category} label="Category" onChange={(e) => setCategory(e.target.value as string)}>
@@ -109,7 +109,7 @@ export default function CreateRequestModal({ open, onClose, onCreate }: CreateRe
               </FormControl>
             </Box>
 
-            <Box sx={{ display: 'flex', gap: 2 }}>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
               <TextField
                 label="Owner"
                 value={owner}

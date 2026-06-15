@@ -56,12 +56,13 @@ export default function FilterBar({
                 borderRadius: 2,
                 boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
                 display: 'flex',
-                alignItems: 'center',
+                flexDirection: { xs: 'column', md: 'row' },
+                alignItems: { xs: 'stretch', md: 'center' },
                 gap: 2,
             }}
         >
             {/* Filters on the left */}
-            <Box sx={{ display: 'flex', gap: 1.5, flex: 1 }}>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1.5, flex: 1, flexWrap: 'wrap' }}>
                 <FormControl sx={{ minWidth: 180 }}>
                     <InputLabel sx={{ color: '#374151', fontSize: '0.875rem' }}>Category</InputLabel>
                     <Select
@@ -139,7 +140,7 @@ export default function FilterBar({
             </Box>
 
             {/* Action buttons on the right */}
-            <Box sx={{ display: 'flex', gap: 2 }}>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mt: { xs: 2, md: 0 } }}>
                 <Button
                     variant="outlined"
                     onClick={onClearFilters}
@@ -149,6 +150,7 @@ export default function FilterBar({
                         fontWeight: 600,
                         fontSize: '0.875rem',
                         textTransform: 'none',
+                        width: { xs: '100%', sm: 'auto' },
                         '&:hover': {
                             borderColor: '#9ca3af',
                             backgroundColor: '#f9fafb',
@@ -167,6 +169,7 @@ export default function FilterBar({
                             fontWeight: 600,
                             fontSize: '0.875rem',
                             textTransform: 'none',
+                            width: { xs: '100%', sm: 'auto' },
                             '&:hover': {
                                 backgroundColor: '#0f1720',
                             },
