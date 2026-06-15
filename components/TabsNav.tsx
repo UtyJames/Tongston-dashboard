@@ -25,6 +25,9 @@ export default function TabsNav({ activeTab, onTabChange }: TabsNavProps) {
       <Tabs
         value={activeTab}
         onChange={(e, value) => onTabChange(value)}
+        variant="scrollable"
+        scrollButtons="auto"
+        allowScrollButtonsMobile
         sx={{
           '& .MuiTab-root': {
             textTransform: 'none',

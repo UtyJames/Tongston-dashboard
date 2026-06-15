@@ -112,7 +112,7 @@ export default function DetailSidebar({ request, isOpen, onClose, onStatusChange
                     <Divider sx={{ my: 2 }} />
 
                     {/* Key Info */}
-                    <Box sx={{ mb: 3, display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 2 }}>
+                    <Box sx={{ mb: 3, display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: 'repeat(5, 1fr)' }, gap: 2 }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                             <Typography variant="body2" sx={{ color: '#6B7280', fontWeight: 600, fontSize: '0.75rem' }}>
                                 CATEGORY
@@ -120,7 +120,7 @@ export default function DetailSidebar({ request, isOpen, onClose, onStatusChange
                             <Typography sx={{ color: '#374151', fontSize: '0.875rem' }}>{request.category}</Typography>
                         </Box>
 
-                        <Divider orientation="vertical" sx={{ borderColor: '#e5e7eb' }} />
+                        <Divider orientation="vertical" sx={{ borderColor: '#e5e7eb', display: { xs: 'none', md: 'block' } }} />
 
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                             <Typography variant="body2" sx={{ color: '#6B7280', fontWeight: 600, fontSize: '0.75rem' }}>
@@ -138,7 +138,7 @@ export default function DetailSidebar({ request, isOpen, onClose, onStatusChange
                             />
                         </Box>
 
-                        <Divider orientation="vertical" sx={{ borderColor: '#e5e7eb' }} />
+                        <Divider orientation="vertical" sx={{ borderColor: '#e5e7eb', display: { xs: 'none', md: 'block' } }} />
 
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                             <Typography variant="body2" sx={{ color: '#6B7280', fontWeight: 600, fontSize: '0.75rem' }}>
@@ -156,7 +156,7 @@ export default function DetailSidebar({ request, isOpen, onClose, onStatusChange
                             />
                         </Box>
 
-                        <Divider orientation="vertical" sx={{ borderColor: '#e5e7eb' }} />
+                        <Divider orientation="vertical" sx={{ borderColor: '#e5e7eb', display: { xs: 'none', md: 'block' } }} />
 
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                             <Typography variant="body2" sx={{ color: '#6B7280', fontWeight: 600, fontSize: '0.75rem' }}>
@@ -165,7 +165,7 @@ export default function DetailSidebar({ request, isOpen, onClose, onStatusChange
                             <Typography sx={{ color: '#374151', fontSize: '0.875rem' }}>{request.owner}</Typography>
                         </Box>
 
-                        <Divider orientation="vertical" sx={{ borderColor: '#e5e7eb' }} />
+                        <Divider orientation="vertical" sx={{ borderColor: '#e5e7eb', display: { xs: 'none', md: 'block' } }} />
 
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                             <Typography variant="body2" sx={{ color: '#6B7280', fontWeight: 600, fontSize: '0.75rem' }}>

@@ -95,8 +95,8 @@ export default function RequestTable({ requests, filteredRequests, onSelectReque
     };
 
     return (
-        <TableContainer component={Paper} sx={{ mt: 4, borderRadius: 2, boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>
-            <Table sx={{ backgroundColor: '#ffffff' }}>
+        <TableContainer component={Paper} sx={{ mt: 4, borderRadius: 2, boxShadow: '0 1px 3px rgba(0,0,0,0.08)', overflowX: 'auto' }}>
+            <Table sx={{ backgroundColor: '#ffffff', minWidth: 800 }}>
                 <TableHead>
                     <TableRow sx={{ backgroundColor: '#f9fafb', borderBottom: '1px solid #e5e7eb' }}>
                         <TableCell sx={{ fontWeight: 600, color: '#374151' }}>ID</TableCell>
