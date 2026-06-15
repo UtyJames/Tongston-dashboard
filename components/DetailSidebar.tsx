@@ -23,23 +23,6 @@ interface DetailSidebarProps {
 
 const statusOptions = ['To Do', 'In Progress', 'Done', 'Pending Approval', 'At Risk'];
 
-const getStatusColor = (status: string) => {
-    switch (status) {
-        case 'Done':
-            return '#10B981';
-        case 'In Progress':
-            return '#F59E0B';
-        case 'To Do':
-            return '#6B7280';
-        case 'Pending Approval':
-            return '#8B5CF6';
-        case 'At Risk':
-            return '#EF4444';
-        default:
-            return '#6B7280';
-    }
-};
-
 const getRiskColor = (risk: string) => {
     switch (risk) {
         case 'High':
@@ -80,11 +63,13 @@ export default function DetailSidebar({ request, isOpen, onClose, onStatusChange
             anchor="right"
             open={isOpen}
             onClose={onClose}
-            PaperProps={{
-                sx: {
-                    width: { xs: '100%', sm: 400 },
-                    backgroundColor: '#ffffff',
-                    borderLeft: '1px solid #e5e7eb',
+            slotProps={{
+                paper: {
+                    sx: {
+                        width: { xs: '100%', sm: '50vw' },
+                        backgroundColor: '#ffffff',
+                        borderLeft: '1px solid #e5e7eb',
+                    },
                 },
             }}
         >

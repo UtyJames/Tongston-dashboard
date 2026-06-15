@@ -1,223 +1,218 @@
 "use client";
 import React from 'react';
-import { Box, Typography, Chip, Paper, Grid } from '@mui/material';
-import WarningIcon from '@mui/icons-material/Warning';
-
-interface TWorldItem {
-    id: string;
-    title: string;
-    status: string;
-    isBlocking: boolean;
-    linkedItem?: string;
-    checks?: { passed: number; failed: number };
-}
+import FilterListIcon from '@mui/icons-material/FilterList';
+import AddIcon from '@mui/icons-material/Add';
+import BugReportOutlinedIcon from '@mui/icons-material/BugReportOutlined';
+import CallSplitIcon from '@mui/icons-material/CallSplit';
+import LinkIcon from '@mui/icons-material/Link';
+import LinkOffIcon from '@mui/icons-material/LinkOff';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import Avatar from '@mui/material/Avatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
 
 const TWorldSection = () => {
-    const issues: TWorldItem[] = [
-        {
-            id: '#112',
-            title: 'Files & Docs approved-file filter',
-            status: 'In Progress',
-            isBlocking: false,
-            linkedItem: 'PR #118',
-        },
-        {
-            id: '#113',
-            title: 'Asset picker frontend connection',
-            status: 'To Do',
-            isBlocking: true,
-            linkedItem: undefined,
-        },
-        {
-            id: '#116',
-            title: 'QA checklist',
-            status: 'To Do',
-            isBlocking: true,
-            linkedItem: undefined,
-        },
-        {
-            id: '#117',
-            title: 'Release note and handover note',
-            status: 'To Do',
-            isBlocking: true,
-            linkedItem: undefined,
-        },
-    ];
+  return (
+    <div className="p-8 w-full font-sans relative pb-24 bg-white min-h-screen">
+      {/* Header */}
+      <div className="flex justify-between items-start mb-8">
+        <div>
+          <h1 className="text-4xl font-bold text-gray-900 tracking-tight mb-1">Delivery Snapshot</h1>
+          <p className="text-gray-500 text-sm">Live overview of active engineering workstream.</p>
+        </div>
+        <div className="flex gap-3">
+          <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors bg-white shadow-sm">
+            <FilterListIcon className="w-4 h-4" /> Filter View
+          </button>
+          <button className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-md text-sm font-semibold hover:bg-gray-800 transition-colors shadow-sm">
+            <AddIcon className="w-4 h-4" /> New Report
+          </button>
+        </div>
+      </div>
 
-    const prs: TWorldItem[] = [
-        {
-            id: 'PR #118',
-            title: 'Backend file filtering endpoint',
-            status: 'Open',
-            isBlocking: false,
-            checks: { passed: 2, failed: 1 },
-        },
-        {
-            id: 'PR #119',
-            title: 'Asset picker UI connection',
-            status: 'Draft',
-            isBlocking: true,
-            checks: { passed: 0, failed: 0 },
-        },
-    ];
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+        {/* Active Issues Column */}
+        <div className="border border-gray-300 bg-white rounded-sm shadow-sm">
+          {/* Column Header */}
+          <div className="flex justify-between items-center p-4 pb-3 border-b border-gray-300">
+            <div className="flex items-center gap-2 text-gray-900">
+              <BugReportOutlinedIcon className="w-6 h-6" />
+              <h2 className="font-bold text-lg">Active Issues</h2>
+            </div>
+            <span className="bg-gray-200 text-gray-600 text-xs font-bold px-2.5 py-1 rounded">4 TOTAL</span>
+          </div>
 
-    const getStatusColor = (status: string) => {
-        switch (status) {
-            case 'In Progress':
-                return '#F59E0B';
-            case 'To Do':
-                return '#6B7280';
-            case 'Open':
-                return '#10B981';
-            case 'Draft':
-                return '#8B5CF6';
-            default:
-                return '#6B7280';
-        }
-    };
+          {/* Cards Container */}
+          <div className="p-4 flex flex-col gap-4">
+            {/* Card 1 */}
+            <div className="border border-gray-300 rounded-sm p-4 bg-white shadow-sm">
+              <div className="flex justify-between items-center mb-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-500 text-xs font-bold">#112</span>
+                  <span className="bg-gray-200 text-gray-700 text-[10px] uppercase font-bold px-1.5 py-0.5 rounded">FOLLOW-UP</span>
+                </div>
+                <span className="bg-blue-50 text-blue-600 text-xs font-bold px-2 py-0.5 rounded">In Progress</span>
+              </div>
+              <h3 className="font-bold text-gray-900 mb-3 text-[15px]">Files & Docs approved-file filter</h3>
+              <div className="flex items-center gap-4 text-[13px] text-gray-500 font-medium">
+                <div className="flex items-center gap-1">
+                  <LinkIcon sx={{ fontSize: 16 }} /> Linked to PR #118
+                </div>
+                <div className="flex items-center gap-1">
+                  <AccessTimeIcon sx={{ fontSize: 16 }} /> Updated 2h ago
+                </div>
+              </div>
+            </div>
 
-    return (
-        <Box sx={{ mt: 6 }}>
-            {/* Header */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
-                <Typography variant="h5" sx={{ fontWeight: 700, color: '#111827' }}>
-                    T-World Release Snapshot
-                </Typography>
-                <Chip
-                    icon={<WarningIcon />}
-                    label="4 Blocking Items"
-                    sx={{
-                        backgroundColor: '#FEE2E2',
-                        color: '#DC2626',
-                        fontWeight: 600,
-                    }}
-                />
-            </Box>
+            {/* Card 2 */}
+            <div className="border border-red-300 rounded-sm p-4 bg-white shadow-sm">
+              <div className="flex justify-between items-center mb-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-500 text-xs font-bold">#113</span>
+                  <span className="bg-red-700 text-white text-[10px] uppercase font-bold px-1.5 py-0.5 rounded flex items-center gap-1 tracking-wide">
+                    <CancelIcon sx={{ fontSize: 12 }} className="text-white" /> RELEASE BLOCKING
+                  </span>
+                </div>
+                <span className="bg-gray-200 text-gray-600 text-xs font-bold px-2 py-0.5 rounded">To Do</span>
+              </div>
+              <h3 className="font-bold text-gray-900 mb-3 text-[15px]">Asset picker frontend connection</h3>
+              <div className="flex items-center gap-1 text-[13px] text-gray-500 font-medium">
+                <LinkOffIcon sx={{ fontSize: 16 }} /> No linked PR
+              </div>
+            </div>
 
-            <Grid container spacing={3}>
-                {/* Issues Section */}
-                <Grid item xs={12} md={6}>
-                    <Paper
-                        sx={{
-                            padding: '24px',
-                            borderRadius: 2,
-                            boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
-                        }}
-                    >
-                        <Typography variant="h6" sx={{ fontWeight: 700, color: '#111827', mb: 2 }}>
-                            Issues
-                        </Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                            {issues.map((issue) => (
-                                <Box
-                                    key={issue.id}
-                                    sx={{
-                                        padding: '12px',
-                                        border: '1px solid #e5e7eb',
-                                        borderRadius: 1,
-                                        backgroundColor: issue.isBlocking ? '#FEF2F2' : '#ffffff',
-                                    }}
-                                >
-                                    <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start', mb: 1 }}>
-                                        <Typography variant="body2" sx={{ fontWeight: 700, color: '#1F2D3D' }}>
-                                            {issue.id}
-                                        </Typography>
-                                        {issue.isBlocking && (
-                                            <WarningIcon sx={{ width: 16, height: 16, color: '#EF4444' }} />
-                                        )}
-                                    </Box>
-                                    <Typography sx={{ color: '#374151', fontSize: '0.875rem', mb: 1 }}>
-                                        {issue.title}
-                                    </Typography>
-                                    <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', alignItems: 'center' }}>
-                                        <Chip
-                                            label={issue.status}
-                                            size="small"
-                                            sx={{
-                                                backgroundColor: getStatusColor(issue.status),
-                                                color: 'white',
-                                                fontWeight: 600,
-                                                fontSize: '0.75rem',
-                                            }}
-                                        />
-                                        {issue.linkedItem && (
-                                            <Chip
-                                                label={issue.linkedItem}
-                                                size="small"
-                                                variant="outlined"
-                                                sx={{
-                                                    borderColor: '#D1D5DB',
-                                                    color: '#374151',
-                                                    fontSize: '0.75rem',
-                                                }}
-                                            />
-                                        )}
-                                    </Box>
-                                </Box>
-                            ))}
-                        </Box>
-                    </Paper>
-                </Grid>
+            {/* Card 3 */}
+            <div className="border border-gray-300 rounded-sm p-4 bg-white shadow-sm">
+              <div className="flex justify-between items-center mb-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-500 text-xs font-bold">#116</span>
+                </div>
+                <span className="bg-gray-200 text-gray-600 text-xs font-bold px-2 py-0.5 rounded">To Do</span>
+              </div>
+              <h3 className="font-bold text-gray-900 mb-3 text-[15px]">QA checklist</h3>
+              <div className="flex items-center gap-1 text-[13px] text-gray-500 font-medium">
+                <ArticleOutlinedIcon sx={{ fontSize: 16 }} /> Documentation Task
+              </div>
+            </div>
 
-                {/* PRs Section */}
-                <Grid item xs={12} md={6}>
-                    <Paper
-                        sx={{
-                            padding: '24px',
-                            borderRadius: 2,
-                            boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
-                        }}
-                    >
-                        <Typography variant="h6" sx={{ fontWeight: 700, color: '#111827', mb: 2 }}>
-                            Pull Requests
-                        </Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                            {prs.map((pr) => (
-                                <Box
-                                    key={pr.id}
-                                    sx={{
-                                        padding: '12px',
-                                        border: '1px solid #e5e7eb',
-                                        borderRadius: 1,
-                                        backgroundColor: pr.isBlocking ? '#F5F3FF' : '#ffffff',
-                                    }}
-                                >
-                                    <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start', mb: 1 }}>
-                                        <Typography variant="body2" sx={{ fontWeight: 700, color: '#1F2D3D' }}>
-                                            {pr.id}
-                                        </Typography>
-                                        {pr.isBlocking && (
-                                            <WarningIcon sx={{ width: 16, height: 16, color: '#8B5CF6' }} />
-                                        )}
-                                    </Box>
-                                    <Typography sx={{ color: '#374151', fontSize: '0.875rem', mb: 1 }}>
-                                        {pr.title}
-                                    </Typography>
-                                    <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', alignItems: 'center' }}>
-                                        <Chip
-                                            label={pr.status}
-                                            size="small"
-                                            sx={{
-                                                backgroundColor: getStatusColor(pr.status),
-                                                color: 'white',
-                                                fontWeight: 600,
-                                                fontSize: '0.75rem',
-                                            }}
-                                        />
-                                        {pr.checks && (
-                                            <Typography sx={{ color: '#6B7280', fontSize: '0.75rem', fontWeight: 600 }}>
-                                                ✓ {pr.checks.passed} {pr.checks.failed > 0 && `✗ ${pr.checks.failed}`}
-                                            </Typography>
-                                        )}
-                                    </Box>
-                                </Box>
-                            ))}
-                        </Box>
-                    </Paper>
-                </Grid>
-            </Grid>
-        </Box>
-    );
+            {/* Card 4 */}
+            <div className="border border-gray-300 rounded-sm p-4 bg-white shadow-sm">
+              <div className="flex justify-between items-center mb-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-500 text-xs font-bold">#117</span>
+                </div>
+                <span className="bg-gray-200 text-gray-600 text-xs font-bold px-2 py-0.5 rounded">To Do</span>
+              </div>
+              <h3 className="font-bold text-gray-900 mb-3 text-[15px]">Release note and handover note</h3>
+              <div className="flex items-center gap-1 text-[13px] text-gray-500 font-medium">
+                <ArticleOutlinedIcon sx={{ fontSize: 16 }} /> Internal Release
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Columns */}
+        <div className="flex flex-col gap-6">
+          {/* Pull Requests Section */}
+          <div className="border border-gray-300 bg-white rounded-sm shadow-sm">
+            <div className="flex justify-between items-center p-4 pb-3 border-b border-gray-300">
+              <div className="flex items-center gap-2 text-gray-900">
+                <CallSplitIcon className="w-5 h-5" />
+                <h2 className="font-bold text-lg">Pull Requests</h2>
+              </div>
+              <span className="bg-gray-200 text-gray-600 text-xs font-bold px-2.5 py-1 rounded">2 OPEN</span>
+            </div>
+
+            <div className="p-4 flex flex-col gap-4">
+              {/* PR Card 1 */}
+              <div className="border border-red-300 rounded-sm p-4 bg-white shadow-sm relative">
+                <div className="flex justify-between items-center mb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-500 text-xs font-bold">#118</span>
+                    <span className="bg-red-700 text-white text-[10px] uppercase font-bold px-1.5 py-0.5 rounded tracking-wide">RELEASE BLOCKING</span>
+                  </div>
+                  <span className="text-emerald-600 text-[11px] font-bold flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Open
+                  </span>
+                </div>
+                <h3 className="font-bold text-gray-900 mb-3 text-[15px]">Backend file filtering endpoint</h3>
+                
+                <div className="bg-[#f8f9fa] border border-dashed border-gray-300 rounded-sm p-2.5 flex justify-between items-center mb-4">
+                  <div className="flex items-center gap-5 text-xs font-bold">
+                    <span className="flex items-center gap-1.5 text-red-700"><CancelIcon sx={{ fontSize: 14 }} className="text-red-600"/> 1 FAILED</span>
+                    <span className="flex items-center gap-1.5 text-emerald-700"><CheckCircleIcon sx={{ fontSize: 14 }} className="text-emerald-500"/> 2 PASSED</span>
+                  </div>
+                  <span className="text-xs font-bold text-gray-700 cursor-pointer hover:underline">Details</span>
+                </div>
+
+                <div className="flex items-center gap-2.5">
+                  <AvatarGroup max={3} sx={{ '& .MuiAvatar-root': { width: 24, height: 24, fontSize: '0.75rem', border: '1px solid white' } }}>
+                    <Avatar alt="User 1" sx={{ width: 24, height: 24, bgcolor: '#1e293b' }} />
+                    <Avatar alt="User 2" sx={{ width: 24, height: 24, bgcolor: '#334155' }} />
+                  </AvatarGroup>
+                  <span className="text-[13px] text-gray-500 font-medium">Waiting on reviews</span>
+                </div>
+              </div>
+
+              {/* PR Card 2 */}
+              <div className="border border-gray-300 rounded-sm p-4 bg-white shadow-sm">
+                <div className="flex justify-between items-center mb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-500 text-xs font-bold">#119</span>
+                    <span className="bg-gray-200 text-gray-700 text-[10px] uppercase font-bold px-1.5 py-0.5 rounded">DRAFT</span>
+                  </div>
+                  <span className="text-gray-500 text-[11px] font-bold">In Review</span>
+                </div>
+                <h3 className="font-bold text-gray-900 mb-3 text-[15px]">Asset picker UI connection</h3>
+                
+                <div className="bg-[#fffbeb] border border-yellow-300 rounded-sm p-3 flex gap-2">
+                  <InfoOutlinedIcon sx={{ fontSize: 18 }} className="text-yellow-600 mt-0.5 flex-shrink-0" />
+                  <p className="text-[13px] text-yellow-800 font-medium leading-relaxed">
+                    Note: Still using mock data. Needs real API integration from PR #118.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Pipeline Velocity Section */}
+          <div className="border border-gray-300 bg-white rounded-sm shadow-sm p-5">
+            <h2 className="font-bold text-gray-900 mb-5 text-[15px]">Pipeline Velocity</h2>
+            
+            <div className="space-y-5">
+              <div>
+                <div className="flex justify-between text-[13px] font-bold mb-2">
+                  <span className="text-gray-700">Stability Score</span>
+                  <span className="text-gray-900">82%</span>
+                </div>
+                <div className="w-full bg-gray-200 h-1.5">
+                  <div className="bg-emerald-500 h-1.5" style={{ width: '82%' }}></div>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-[13px] font-bold mb-2">
+                  <span className="text-gray-700">Build Coverage</span>
+                  <span className="text-gray-900">94%</span>
+                </div>
+                <div className="w-full bg-gray-200 h-1.5">
+                  <div className="bg-emerald-500 h-1.5" style={{ width: '94%' }}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Action Button */}
+      <button className="fixed bottom-8 right-8 w-12 h-12 bg-black text-white rounded-lg shadow-lg flex items-center justify-center hover:bg-gray-800 transition-colors">
+        <AddIcon />
+      </button>
+    </div>
+  );
 };
 
 export default TWorldSection;

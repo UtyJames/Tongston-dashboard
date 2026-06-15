@@ -11,7 +11,7 @@ export default function Header() {
       <Toolbar>
         <Box sx={{ flexGrow: 1 }}>
           <Typography variant="h6" component="div" sx={{ fontWeight: 700 }}>
-            Tongston Support Dashboard
+            Tongston Technology Support Dashboard
           </Typography>
           <Typography variant="caption" sx={{ color: '#F5C200' }}>
             Support requests and T-World delivery snapshot
